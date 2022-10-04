@@ -1,13 +1,10 @@
-version: "4"
+version: '3.4'
+
 services:
   transaction:
-    build: ./transaction
+    image: spring-docker-transaction
+    build:
+      context: .
+      dockerfile: transaction/Dockerfile
     ports:
-      - 8080:8080
-    environment:
-      - POSTGRES_DB=example
-    depends_on:
-      - db
-  db:
-    image: postgres
-    
+      - "8081:8080"

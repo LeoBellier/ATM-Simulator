@@ -1,10 +1,11 @@
-FROM openjdk:17-jdk-alpine
+FROM gradle:jdk17-alpine
+
+COPY . /app
 
 WORKDIR /app
 
+RUN gradle build
 
-RUN ./mvnw dependency:go-offline
+EXPOSE 8080
 
-COPY ["src", "./src"]
-
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["sh", "start.sh"]
